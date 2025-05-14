@@ -16,17 +16,24 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbars">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#about">About / Acerca</a></li>
-          <li class="nav-item"><a class="nav-link" href="#research-path">Research Path / Ruta</a></li>
-          <li class="nav-item"><a class="nav-link" href="#bibliography">Bibliography / Bibliografía</a></li>
-          <li class="nav-item"><a class="nav-link" href="#files">Files / Archivos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#newsletter">Registration / Registro</a></li>
-          <li class="nav-item">
-            <button class="btn btn-sm btn-outline-light ms-2" onclick="setLanguage('en')">EN</button>
-            <button class="btn btn-sm btn-outline-light ms-1" onclick="setLanguage('es')">ES</button>
-          </li>
+        <ul class="navbar-nav ms-auto lang-en">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#research-path">Research Path</a></li>
+          <li class="nav-item"><a class="nav-link" href="#bibliography">Bibliography</a></li>
+          <li class="nav-item"><a class="nav-link" href="#files">Files</a></li>
+          <li class="nav-item"><a class="nav-link" href="#newsletter">Registration</a></li>
         </ul>
+        <ul class="navbar-nav ms-auto lang-es" style="display:none;">
+          <li class="nav-item"><a class="nav-link" href="#about">Acerca del grupo</a></li>
+          <li class="nav-item"><a class="nav-link" href="#research-path">Ruta de investigación</a></li>
+          <li class="nav-item"><a class="nav-link" href="#bibliography">Bibliografía</a></li>
+          <li class="nav-item"><a class="nav-link" href="#files">Archivos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#newsletter">Registro</a></li>
+        </ul>
+        <div class="d-flex ms-3">
+          <button class="btn btn-sm btn-outline-light me-1" onclick="setLanguage('en')">EN</button>
+          <button class="btn btn-sm btn-outline-light" onclick="setLanguage('es')">ES</button>
+        </div>
       </div>
     </div>
   </nav>
@@ -47,7 +54,7 @@
         Learning and research group on quantum mechanics and condensed matter (and statistical mechanics). The Research Path depends on your level (year of study).
       </p>
       <p class="lead lang-es" style="display:none;">
-        Grupo de estudio e investigación en mecánica cuántica y materia condensada (incluyendo mecánica estadística). La Ruta de Investigación depende del nivel académico del estudiante.
+        Grupo de estudio e investigación en mecánica cuántica y materia condensada (incluyendo mecánica estadística). La Ruta de Investigación depende de tu nivel (año de estudio).
       </p>
     </div>
   </section>
@@ -113,8 +120,20 @@
         <li>S. Axler, <em>Linear Algebra Done Right</em> (2025)</li>
         <li>R. Shankar, <em>Principles of Quantum Mechanics</em> (2008)</li>
         <li>L. E. Ballentine, <em>Quantum Mechanics: A Modern Development</em> (2014)</li>
-        <li>M. S. Dresselhaus, <em>Group Theory...</em> (2007)</li>
-        <li>... (continúa igual en ambos idiomas)</li>
+        <li>M. S. Dresselhaus, <em>Group Theory: Application to the Physics of Condensed Matter</em> (2007)</li>
+        <li>C. Bradley, <em>The Mathematical Theory of Symmetry in Solids</em> (2009)</li>
+        <li>B. Hall, <em>Lie Groups, Lie Algebras, and Representations</em> (2015)</li>
+        <li>B. Hall, <em>Quantum Theory for Mathematicians</em> (2013)</li>
+        <li>Thomas F. Jordan, <em>Linear Operators for Quantum Mechanics</em> (2012)</li>
+        <li>N. Dunford, J. T. Schwartz, <em>Linear Operators</em> (1988)</li>
+        <li>G. Grosso, G. Parravicini, <em>Solid State Physics</em> (2013)</li>
+        <li>N. Ashcroft, N. Mermin, <em>Solid State Physics</em> (1976)</li>
+        <li>R. Martin, <em>Electronic Structure: Basic Theory and Practical Methods</em> (2020)</li>
+        <li>R. Martin, <em>Interacting Electrons: Theory and Computational Approaches</em> (2016)</li>
+        <li>R. G. Parr, W. Yang, <em>Density-Functional Theory of Atoms and Molecules</em> (1989)</li>
+        <li>B. A. Bernevig, T. L. Hughes, <em>Topological Insulators and Topological Superconductors</em> (2013)</li>
+        <li>D. Vanderbilt, <em>Berry Phases in Electronic Structure Theory</em> (2018)</li>
+        <li><em>Relevant publications and articles when needed</em></li>
       </ul>
     </div>
   </section>
@@ -123,7 +142,7 @@
     <div class="container">
       <h2 class="lang-en">Files</h2>
       <h2 class="lang-es" style="display:none;">Archivos</h2>
-      <!-- Placeholder -->
+      <!-- Add file links here -->
     </div>
   </section>
 
