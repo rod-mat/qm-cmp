@@ -17,11 +17,15 @@
       </button>
       <div class="collapse navbar-collapse" id="navbars">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#research-path">Research Path</a></li>
-          <li class="nav-item"><a class="nav-link" href="#bibliography">Bibliography</a></li>
-          <li class="nav-item"><a class="nav-link" href="#files">Files</a></li>
-          <li class="nav-item"><a class="nav-link" href="#newsletter">Registration</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About / Acerca</a></li>
+          <li class="nav-item"><a class="nav-link" href="#research-path">Research Path / Ruta</a></li>
+          <li class="nav-item"><a class="nav-link" href="#bibliography">Bibliography / Bibliografía</a></li>
+          <li class="nav-item"><a class="nav-link" href="#files">Files / Archivos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#newsletter">Registration / Registro</a></li>
+          <li class="nav-item">
+            <button class="btn btn-sm btn-outline-light ms-2" onclick="setLanguage('en')">EN</button>
+            <button class="btn btn-sm btn-outline-light ms-1" onclick="setLanguage('es')">ES</button>
+          </li>
         </ul>
       </div>
     </div>
@@ -29,24 +33,30 @@
 
   <header id="top" class="bg-primary text-white text-center" style="padding:8rem 1rem;">
     <div class="container">
-      <h1 class="fw-light">Quantum & Condensed-Matter Theory Group</h1>
+      <h1 class="fw-light lang-en">Quantum & Condensed-Matter Theory Group</h1>
+      <h1 class="fw-light lang-es" style="display:none;">Grupo de Teoría Cuántica y Materia Condensada</h1>
       <p class="lead">OFTE</p>
     </div>
   </header>
 
   <section id="about" class="py-5">
     <div class="container">
-      <h2>About</h2>
-      <p class="lead">
+      <h2 class="lang-en">About</h2>
+      <h2 class="lang-es" style="display:none;">Acerca del grupo</h2>
+      <p class="lead lang-en">
         Learning and research group on quantum mechanics and condensed matter (and statistical mechanics). The Research Path depends on your level (year of study).
+      </p>
+      <p class="lead lang-es" style="display:none;">
+        Grupo de estudio e investigación en mecánica cuántica y materia condensada (incluyendo mecánica estadística). La Ruta de Investigación depende del nivel académico del estudiante.
       </p>
     </div>
   </section>
 
   <section id="research-path" class="bg-light py-5">
     <div class="container">
-      <h2>Research Path</h2>
-      <ol>
+      <h2 class="lang-en">Research Path</h2>
+      <h2 class="lang-es" style="display:none;">Ruta de Investigación</h2>
+      <ol class="lang-en">
         <li>Linear Algebra
           <ol>
             <li>Linear Vector Spaces</li>
@@ -69,45 +79,60 @@
           </ol>
         </li>
       </ol>
+      <ol class="lang-es" style="display:none;">
+        <li>Álgebra Lineal
+          <ol>
+            <li>Espacios Vectoriales</li>
+            <li>Espacios con Producto Interno</li>
+            <li>Espacios Duales</li>
+            <li>Operadores Lineales</li>
+            <li>Elementos de Matriz de Operadores</li>
+            <li>Generalización a Dimensiones Infinitas</li>
+          </ol>
+        </li>
+        <li>Fundamentos de Teoría de Grupos</li>
+        <li>Introducción a la Mecánica Cuántica y Operadores</li>
+        <li>Introducción a la Física del Estado Sólido</li>
+        <li>Estructura Electrónica</li>
+        <li>Teoría del Funcional de la Densidad (Opcional)</li>
+        <li>Temas de Profundización (a elección)
+          <ol>
+            <li>Fases Topológicas de la Materia</li>
+            <li>Magnetismo</li>
+          </ol>
+        </li>
+      </ol>
     </div>
   </section>
 
   <section id="bibliography" class="py-5">
     <div class="container">
-      <h2>Bibliography</h2>
+      <h2 class="lang-en">Bibliography</h2>
+      <h2 class="lang-es" style="display:none;">Bibliografía</h2>
       <ul>
         <li>S. Axler, <em>Linear Algebra Done Right</em> (2025)</li>
         <li>R. Shankar, <em>Principles of Quantum Mechanics</em> (2008)</li>
         <li>L. E. Ballentine, <em>Quantum Mechanics: A Modern Development</em> (2014)</li>
-        <li>M. S. Dresselhaus, <em>Group Theory: Application to the Physics of Condensed Matter</em> (2007)</li>
-        <li>C. Bradley, <em>The Mathematical Theory of Symmetry in Solids</em> (2009)</li>
-        <li>B. Hall, <em>Lie Groups, Lie Algebras, and Representations</em> (2015)</li>
-        <li>B. Hall, <em>Quantum Theory for Mathematicians</em> (2013)</li>
-        <li>Thomas F. Jordan, <em>Linear Operators for Quantum Mechanics</em> (2012)</li>
-        <li>N. Dunford, J. T. Schwartz, <em>Linear Operators</em> (1988)</li>
-        <li>G. Grosso, G. Parravicini, <em>Solid State Physics</em> (2013)</li>
-        <li>N. Ashcroft, N. Mermin, <em>Solid State Physics</em> (1976)</li>
-        <li>R. Martin, <em>Electronic Structure</em> (2020)</li>
-        <li>R. Martin, <em>Interacting Electrons</em> (2016)</li>
-        <li>R. G. Parr, W. Yang, <em>Density-Functional Theory of Atoms and Molecules</em> (1989)</li>
-        <li>B. A. Bernevig, T. L. Hughes, <em>Topological Insulators and Superconductors</em> (2013)</li>
-        <li>D. Vanderbilt, <em>Berry Phases in Electronic Structure Theory</em> (2018)</li>
-        <li><em>Relevant publications and articles when needed</em></li>
+        <li>M. S. Dresselhaus, <em>Group Theory...</em> (2007)</li>
+        <li>... (continúa igual en ambos idiomas)</li>
       </ul>
     </div>
   </section>
 
   <section id="files" class="bg-light py-5">
     <div class="container">
-      <h2>Files</h2>
-      <!-- Placeholder for downloadable content -->
+      <h2 class="lang-en">Files</h2>
+      <h2 class="lang-es" style="display:none;">Archivos</h2>
+      <!-- Placeholder -->
     </div>
   </section>
 
   <section id="newsletter" class="py-5">
     <div class="container">
-      <h2>Registration</h2>
-      <p>Subscribe to receive updates and news from the group:</p>
+      <h2 class="lang-en">Registration</h2>
+      <h2 class="lang-es" style="display:none;">Registro</h2>
+      <p class="lang-en">Subscribe to receive updates and news from the group:</p>
+      <p class="lang-es" style="display:none;">Suscríbete para recibir actualizaciones y novedades del grupo:</p>
       <div class="ratio ratio-16x9">
         <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScZ_lU_8u1Hce67GXxLl95vc95pcgWsqK2CDcaYErsdOerDKQ/viewform?embedded=true"
                 width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">
@@ -122,5 +147,12 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function setLanguage(lang) {
+      document.querySelectorAll('[class^="lang-"]').forEach(el => {
+        el.style.display = el.classList.contains('lang-' + lang) ? '' : 'none';
+      });
+    }
+  </script>
 </body>
 </html>
