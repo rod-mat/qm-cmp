@@ -16,28 +16,25 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbars">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link lang-en" href="#about">About</a>
-            <a class="nav-link lang-es" href="#about" style="display:none;">Acerca del grupo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link lang-en" href="#research-path">Research Path</a>
-            <a class="nav-link lang-es" href="#research-path" style="display:none;">Ruta de investigación</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link lang-en" href="#bibliography">Bibliography</a>
-            <a class="nav-link lang-es" href="#bibliography" style="display:none;">Bibliografía</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link lang-en" href="#files">Files</a>
-            <a class="nav-link lang-es" href="#files" style="display:none;">Archivos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link lang-en" href="#newsletter">Registration</a>
-            <a class="nav-link lang-es" href="#newsletter" style="display:none;">Registro</a>
-          </li>
+        <!-- ENGLISH NAV -->
+        <ul class="navbar-nav ms-auto lang-en">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#research-path">Research Path</a></li>
+          <li class="nav-item"><a class="nav-link" href="#bibliography">Bibliography</a></li>
+          <li class="nav-item"><a class="nav-link" href="#files">Files</a></li>
+          <li class="nav-item"><a class="nav-link" href="#newsletter">Registration</a></li>
         </ul>
+
+        <!-- SPANISH NAV -->
+        <ul class="navbar-nav ms-auto lang-es" style="display:none;">
+          <li class="nav-item"><a class="nav-link" href="#about">Acerca del grupo</a></li>
+          <li class="nav-item"><a class="nav-link" href="#research-path">Ruta de investigación</a></li>
+          <li class="nav-item"><a class="nav-link" href="#bibliography">Bibliografía</a></li>
+          <li class="nav-item"><a class="nav-link" href="#files">Archivos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#newsletter">Registro</a></li>
+        </ul>
+
+        <!-- Language Buttons -->
         <div class="d-flex ms-3">
           <button class="btn btn-sm btn-outline-light me-1" onclick="setLanguage('en')">EN</button>
           <button class="btn btn-sm btn-outline-light" onclick="setLanguage('es')">ES</button>
@@ -150,7 +147,6 @@
     <div class="container">
       <h2 class="lang-en">Files</h2>
       <h2 class="lang-es" style="display:none;">Archivos</h2>
-      <!-- Add file links here -->
     </div>
   </section>
 
@@ -176,7 +172,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     function setLanguage(lang) {
-      document.querySelectorAll('[class^="lang-"]').forEach(el => {
+      document.querySelectorAll('.lang-en, .lang-es').forEach(el => {
         el.style.display = el.classList.contains('lang-' + lang) ? '' : 'none';
       });
     }
