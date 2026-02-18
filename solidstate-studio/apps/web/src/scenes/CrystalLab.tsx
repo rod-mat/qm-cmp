@@ -27,17 +27,16 @@ export default function CrystalLab() {
     const [showPlanes, setShowPlanes] = useState(true);
 
     // Query
-    const { data } = useQuery({
+    const { data, isLoading, isError, error } = useQuery({
         queryKey: ['crystal', req],
         queryFn: () => apiClient.buildCrystal(req),
         staleTime: Infinity,
         retry: false
     });
-    // Note: CrystalLab handles its own layout, so we might want to inject error overlay or handled inside
-    // For now, let's just log or show a toast if possible, but simplest is conditional render.
-    // However, CrystalLab is the main view.
 
-    // Changing approach: Inject error display inside LabLayout or Main area.
+    if (isLoading) return <div className="text-white p-8">Loading crystal structure...</div>;
+    if (isError) return <div className="text-red-500 p-8">Error: {error?.message}</div>;
+
 
 
     // Handlers
