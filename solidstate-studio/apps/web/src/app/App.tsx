@@ -23,9 +23,9 @@ function Router() {
     if (path === '/ewald') Component = EwaldLab;
     if (path === '/tb') Component = TBLab;
     if (path === '/') {
-        // Redirect to crystal
+        // Redirect to tb
         useEffect(() => {
-            navigate('/crystal');
+            navigate('/tb');
         }, []);
         return null;
     }
@@ -38,8 +38,9 @@ function Router() {
                     <span className="text-blue-500 text-xl">♦</span> SolidState Studio
                 </div>
                 <nav className="flex gap-4">
-                    <NavLink active={path.startsWith('/crystal')} onClick={() => navigate('/crystal')}>Crystal</NavLink>
-                    <NavLink active={path.startsWith('/ewald')} onClick={() => navigate('/ewald')}>Diffraction</NavLink>
+                    {/* Hiding Crystal/Diffraction for simplifiction, but keeping routes active if needed */}
+                    {/* <NavLink active={path.startsWith('/crystal')} onClick={() => navigate('/crystal')}>Crystal</NavLink> */}
+                    {/* <NavLink active={path.startsWith('/ewald')} onClick={() => navigate('/ewald')}>Diffraction</NavLink> */}
                     <NavLink active={path.startsWith('/tb')} onClick={() => navigate('/tb')}>Tight-Binding</NavLink>
                 </nav>
             </header>

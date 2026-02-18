@@ -1,20 +1,60 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { apiClient } from '@/api/client';
-import { LabLayout, ControlGroup, Label, Input } from '@/components/LabLayout';
+import { LabLayout, ControlGroup, Label, Input, Button } from '@/components/LabLayout';
 import { BandPlot } from '@/plots/BandPlot';
 import { DOSPlot } from '@/plots/DOSPlot';
 import { TBRequest } from '@shared/schemas';
+import ReactMarkdown from 'react-markdown';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css'; // Ensure CSS is loaded (might need global import in App.tsx if this fails)
+
+const THEORY_CONTENT: Record<string, string> = {
+    '1d_chain': `
+### 1D Linear Chain
+The simplest model in solid state physics. A single orbital per atom, arranged in a line.
+
+**Hamiltonian:**
+$$ H = \\sum_i \\epsilon c_i^\\dagger c_i - t \\sum_{\\langle i,j \\rangle} (c_i^\\dagger c_j + h.c.) $$
+
+**Dispersion Relation:**
+$$ E(k) = \\epsilon - 2t \\cos(ka) $$
+
+*   **Bandwidth**: $4t$
+*   **Gap**: None (Metallic unless Peierls instability)
+`,
+    '2d_square': `
+### 2D Square Lattice
+Atoms arranged in a simple square grid.
+
+**Dispersion:**
+$$ E(k_x, k_y) = \\epsilon - 2t (\\cos(k_x a) + \\cos(k_y a)) $$
+
+**Van Hove Singularities:**
+Logarithmic divergence in the Density of States (DOS) occurs at $E = \\epsilon$ (half-filling), visible as a sharp peak in the orange plot below.
+`,
+    '2d_honeycomb': `
+### Graphene (Honeycomb Lattice)
+Two atoms per unit cell (A and B sublattices).
+
+**Hamiltonian:**
+$$ H(k) = \\begin{pmatrix} \\epsilon_A & f(k) \\\\ f^*(k) & \\epsilon_B \\end{pmatrix} $$
+where $f(k) = -t (1 + e^{-i k \\cdot a_1} + e^{-i k \\cdot a_2})$
+
+**Dirac Cones:**
+At the $K$ points, the dispersion is linear:
+$$ E(q) \\approx \\pm v_F |q| $$
+This gives Graphene its massless Dirac fermion properties.
+`
+};
 
 export default function TBLab() {
     const [model, setModel] = useState<string>('2d_honeycomb');
-    // Params
-    const [t, setT] = useState(-2.7);
+    const [t, setT] = useState(2.7); // Changed default to positive magnitude convention (physics usually -t)
+    const [showTheory, setShowTheory] = useState(true);
 
     // Kpath
-    // Default G-K-M-G for Hex?
-    // G(0,0), K(4pi/3a, 0), M(pi/a, pi/sqrt(3)a)? 
-    // Simplified for MVP
     const kPoints = model === '2d_honeycomb'
         ? [
             { label: 'G', k: [0, 0, 0] },
@@ -32,7 +72,7 @@ export default function TBLab() {
     const req: TBRequest = {
         model: {
             lattice: model as any,
-            params: { t: t, eps: 0.0, epsA: 0.0, epsB: 0.0 }
+            params: { t: -t, eps: 0.0, epsA: 0.0, epsB: 0.0 } // Passing -t to backend
         },
         kpath: {
             points: kPoints as any,
@@ -58,10 +98,12 @@ export default function TBLab() {
         <LabLayout
             sidebar={
                 <>
-                    <h1 className="text-xl font-bold text-white mb-4">Tight-Binding</h1>
-                    <ControlGroup title="Model">
+                    <h1 className="text-xl font-bold text-white mb-4">Tight-Binding Model</h1>
+
+                    <ControlGroup title="Configuration">
+                        <Label>Lattice Type</Label>
                         <select
-                            className="w-full bg-neutral-800 p-2 rounded mb-4"
+                            className="w-full bg-neutral-800 p-2 rounded mb-4 text-sm"
                             value={model}
                             onChange={(e) => setModel(e.target.value)}
                         >
@@ -69,15 +111,34 @@ export default function TBLab() {
                             <option value="2d_square">2D Square</option>
                             <option value="2d_honeycomb">Graphene (Honeycomb)</option>
                         </select>
-                        <Label>Hopping t (eV)</Label>
+                        <Label>Hopping Energy t (eV)</Label>
                         <Input type="number" step="0.1" value={t} onChange={e => setT(parseFloat(e.target.value))} />
                     </ControlGroup>
+
+                    <div className="mt-4">
+                        <Button active={showTheory} onClick={() => setShowTheory(!showTheory)}>
+                            {showTheory ? "Hide Theory" : "Show Theory"}
+                        </Button>
+                    </div>
+
+                    {showTheory && (
+                        <div className="mt-4 p-4 bg-neutral-900 rounded border border-neutral-700 text-sm overflow-y-auto max-h-[50vh prose prose-invert">
+                            <ReactMarkdown
+                                remarkPlugins={[remarkMath]}
+                                rehypePlugins={[rehypeKatex]}
+                                className="prose prose-invert prose-sm"
+                            >
+                                {THEORY_CONTENT[model]}
+                            </ReactMarkdown>
+                        </div>
+                    )}
                 </>
             }
             main={
                 <div className="flex flex-col h-full bg-neutral-900 p-4 gap-4">
                     {/* Top: Bands */}
-                    <div className="flex-1 bg-black rounded border border-neutral-800 p-2">
+                    <div className="flex-1 bg-black rounded border border-neutral-800 p-2 relative">
+                        <h3 className="absolute top-2 left-4 text-neutral-400 text-xs z-10 font-bold">Electronic Band Structure</h3>
                         {data && (
                             <BandPlot
                                 bands={data.bands}
@@ -89,7 +150,8 @@ export default function TBLab() {
                     </div>
 
                     {/* Bottom: DOS */}
-                    <div className="h-1/3 bg-black rounded border border-neutral-800 p-2">
+                    <div className="h-1/3 bg-black rounded border border-neutral-800 p-2 relative">
+                        <h3 className="absolute top-2 left-4 text-neutral-400 text-xs z-10 font-bold">Density of States (DOS)</h3>
                         {data?.dos && (
                             <DOSPlot
                                 E={data.dos.E}
