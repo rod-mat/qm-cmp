@@ -1,14 +1,35 @@
 # Main entry script
 using Pkg
 Pkg.activate(dirname(@__DIR__)) # Activate apps/api
-# Pkg.instantiate() # Uncomment if needed on first run
 
-push!(LOAD_PATH, joinpath(@__DIR__, "src"))
+# Include modules manually since they are not a package
 
-using Server
+module SolidStateStudioAPI
+
+    # Utils
+    include("Utils/CanonicalJSON.jl")
+    include("Utils/Hashing.jl")
+    include("Utils/Validation.jl")
+    
+    # Models
+    include("Models/Schemas.jl")
+    
+    # Core
+    include("Cache.jl")
+
+    # Physics
+    include("Physics/Crystal.jl")
+    include("Physics/Diffraction.jl")
+    include("Physics/TightBinding.jl")
+
+    # App
+    include("Routes.jl")
+    include("Server.jl")
+
+end
 
 # Start
 # For Docker, we might run this script.
 # "julia --project=. src/run.jl"
 
-Server.run_server()
+SolidStateStudioAPI.Server.run_server()
