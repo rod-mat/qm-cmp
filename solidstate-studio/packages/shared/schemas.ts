@@ -119,6 +119,8 @@ export const SpotSchema = z.object({
   intensity: z.number()
 });
 
+export type SpotData = z.infer<typeof SpotSchema>;
+
 export const EwaldResponseSchema = z.object({
   spots: z.array(SpotSchema),
   meta: z.object({

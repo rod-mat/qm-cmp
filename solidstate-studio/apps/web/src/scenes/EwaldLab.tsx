@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { apiClient } from '@/api/client';
 import { LabLayout, ControlGroup, Label, Input } from '@/components/LabLayout';
 import { EwaldSphere, BeamArrow } from '@/three/EwaldMisc';
@@ -11,7 +11,7 @@ import { DEFAULT_BG_COLOR } from '@shared/constants';
 import { EwaldRequest } from '@shared/schemas';
 
 // Helpers
-import { toVec3 } from '@/three/utils';
+// import { toVec3 } from '@/three/utils'; // unused
 
 export default function EwaldLab() {
     // We need a Crystal Input. For MVP, hardcode a simple crystal (cubic a=3)
@@ -58,7 +58,7 @@ export default function EwaldLab() {
     const { data } = useQuery({
         queryKey: ['ewald', req],
         queryFn: () => apiClient.calcEwald(req),
-        keepPreviousData: true
+        placeholderData: keepPreviousData
     });
 
     const kRad = 2 * Math.PI / lambda;

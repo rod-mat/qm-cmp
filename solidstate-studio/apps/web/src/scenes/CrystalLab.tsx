@@ -125,7 +125,7 @@ export default function CrystalLab() {
                             }}>Add</Button>
                         </div>
                         <div className="space-y-1">
-                            {req.planes.map((p, i) => (
+                            {req.planes.map((p: any, i: number) => (
                                 <div key={i} className="flex justify-between items-center text-xs bg-neutral-800 px-2 py-1 rounded">
                                     <span>({p.h} {p.k} {p.l})</span>
                                     <button className="text-red-400 hover:text-white" onClick={() => removePlane(i)}>×</button>
@@ -154,7 +154,7 @@ export default function CrystalLab() {
                                 />
                                 <CellEdges A={data.real.A} origin={data.real.origin} />
 
-                                {showPlanes && data.planes?.map((p, i) => (
+                                {showPlanes && data.planes?.map((p: any, i: number) => (
                                     <HKLPlaneMesh
                                         key={i}
                                         vertices={p.mesh.vertices}
