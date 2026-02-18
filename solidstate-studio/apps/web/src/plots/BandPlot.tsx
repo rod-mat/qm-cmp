@@ -16,7 +16,7 @@ export function BandPlot({ bands, kDist, labels, height = 400 }: BandPlotProps) 
         type: 'scatter' as const,
         mode: 'lines' as const,
         name: `Band ${i}`,
-        line: { color: 'blue', width: 2 },
+        line: { color: '#1f77b4', width: 2 }, // Matplotlib blue
         showlegend: false
     }));
 
@@ -27,22 +27,27 @@ export function BandPlot({ bands, kDist, labels, height = 400 }: BandPlotProps) 
         <Plot
             data={traces}
             layout={{
-                title: { text: 'Electronic Band Structure' },
+                title: { text: 'Electronic Band Structure', font: { color: '#333' } },
                 width: undefined, // responsive
                 height: height,
                 xaxis: {
-                    title: { text: 'Wave Vector k' },
+                    title: { text: 'Wave Vector', font: { color: '#333' } },
                     tickvals: tickvals,
                     ticktext: ticktext,
-                    gridcolor: '#444'
+                    gridcolor: 'white',
+                    zeroline: false,
+                    color: '#333'
                 },
                 yaxis: {
-                    title: { text: 'Energy (eV)' },
-                    gridcolor: '#444'
+                    title: { text: 'E-E_fermi (eV)', font: { color: '#333' } },
+                    gridcolor: 'white',
+                    zeroline: true,
+                    zerolinecolor: 'white',
+                    color: '#333'
                 },
-                paper_bgcolor: 'rgba(0,0,0,0)',
-                plot_bgcolor: 'rgba(0,0,0,0)',
-                font: { color: '#ccc' },
+                paper_bgcolor: 'white',
+                plot_bgcolor: '#e5e5e5', // Light gray background like ggplot
+                font: { color: '#333' },
                 margin: { t: 40, r: 0, l: 60, b: 40 }, // Right margin 0 to touch DOS
                 dragmode: 'pan', // Default to pan
             }}

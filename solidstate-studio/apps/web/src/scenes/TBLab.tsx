@@ -154,8 +154,8 @@ export default function TBLab() {
             }
             main={
                 <div className="flex flex-col h-full bg-neutral-900 p-4 gap-4 overflow-y-auto">
-                    {/* Container for Side-by-Side Plot */}
-                    <div className="flex flex-col lg:flex-row h-[600px] w-full gap-2">
+                    {/* Container for Side-by-Side Plot - FORCED ROW */}
+                    <div className="flex flex-row h-[600px] w-full gap-2">
                         {/* Left: Bands (75%) */}
                         <div className="flex-[3] bg-white rounded border border-neutral-300 p-2 relative h-full">
                             {data && (
