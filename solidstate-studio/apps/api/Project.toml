@@ -8,12 +8,7 @@ HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
 JSON3 = "0f8b85d8-7281-11e9-16c2-3d612da52d4a"
 StructTypes = "856f2bd8-1eba-4b0a-8007-ebc267875bd4"
 StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
-LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 FFTW = "7a1cc6ca-52ef-59f5-83cd-3a7055c09341"
-SHA = "ea8e919c-243c-11e9-24eb-ed1c0b768058"
-Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
-Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
-Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 
 [compat]
 julia = "1.10"
