@@ -1,18 +1,6 @@
-name = "SolidStateStudioAPI"
-uuid = "12345678-1234-1234-1234-1234567890ab"
-authors = ["SolidState Studio"]
-version = "0.1.0"
-
 [deps]
 HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
 JSON3 = "0f8b85d8-7281-11e9-16c2-3d612da52d4a"
 StructTypes = "856f2bd8-1eba-4b0a-8007-ebc267875bd4"
 StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 FFTW = "7a1cc6ca-52ef-59f5-83cd-3a7055c09341"
-
-[compat]
-julia = "1.10"
-HTTP = "1.0"
-JSON3 = "1.14"
-StructTypes = "1.10"
-StaticArrays = "1.9"

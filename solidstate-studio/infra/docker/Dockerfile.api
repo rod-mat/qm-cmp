@@ -3,13 +3,8 @@ FROM julia:1.10
 # Set working directory
 WORKDIR /app
 
-# Copy Project configuration
-COPY apps/api/Project.toml ./
-# If Manifest exist, copy it too. For now just Project.
-# COPY apps/api/Manifest.toml ./
-
-# Install dependencies
-RUN julia --project=. -e 'using Pkg; Pkg.instantiate(); Pkg.precompile();'
+# Install dependencies manually to avoid registry/Project.toml sync issues
+RUN julia --project=. -e 'using Pkg; Pkg.add(["HTTP", "JSON3", "StructTypes", "StaticArrays", "FFTW"]); Pkg.precompile();'
 
 # Copy Source
 COPY apps/api/src ./src
