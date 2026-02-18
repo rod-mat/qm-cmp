@@ -1,10 +1,9 @@
 import {
-    CrystalBuildRequestSchema, CrystalBuildResponseSchema,
-    EwaldRequestSchema, EwaldResponseSchema,
-    TBRequestSchema, TBResponseSchema,
-    type CrystalBuildRequest, type CrystalBuildResponse,
-    type EwaldRequest, type EwaldResponse,
-    type TBRequest, type TBResponse
+import {
+        type CrystalBuildRequest, type CrystalBuildResponse,
+        type EwaldRequest, type EwaldResponse,
+        type TBRequest, type TBResponse
+    } from '@shared/schemas'
 } from '@shared/schemas'
 
 const API_BASE = import.meta.env.VITE_API_BASE || '/api';

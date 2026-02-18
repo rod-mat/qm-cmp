@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import CrystalLab from './scenes/CrystalLab';
-import EwaldLab from './scenes/EwaldLab';
-import TBLab from './scenes/TBLab';
-import { cn } from './utils/cn';
+import CrystalLab from '../scenes/CrystalLab';
+import EwaldLab from '../scenes/EwaldLab';
+import TBLab from '../scenes/TBLab';
+import { cn } from '../utils/cn';
 
 // Simple router
 function Router() {
