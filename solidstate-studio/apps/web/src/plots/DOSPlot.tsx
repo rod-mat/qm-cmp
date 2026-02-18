@@ -16,25 +16,31 @@ export function DOSPlot({ E, dos, height = 400 }: DOSPlotProps) {
                 type: 'scatter' as const,
                 mode: 'lines' as const,
                 fill: 'tozerox',
-                line: { color: 'orange', width: 2 }
+                fillcolor: 'rgba(128,128,128,0.5)', // Gray fill
+                line: { color: 'red', width: 2 } // Red line
             }]}
             layout={{
-                title: { text: 'Density of States' },
+                title: { text: 'Density of States', font: { color: '#333' } },
                 width: undefined,
                 height: height,
                 xaxis: {
-                    title: { text: 'DOS (arb. units)' },
-                    gridcolor: '#444',
-                    showticklabels: false
+                    title: { text: 'Density of States', font: { color: '#333' } },
+                    gridcolor: 'white',
+                    showticklabels: true,
+                    zeroline: false,
+                    color: '#333'
                 },
                 yaxis: {
                     title: { text: '' }, // Shared axis usually
-                    gridcolor: '#444',
-                    showticklabels: false
+                    gridcolor: 'white',
+                    showticklabels: false,
+                    zeroline: true,
+                    zerolinecolor: 'white',
+                    color: '#333'
                 },
-                paper_bgcolor: 'rgba(0,0,0,0)',
-                plot_bgcolor: 'rgba(0,0,0,0)',
-                font: { color: '#ccc' },
+                paper_bgcolor: 'white',
+                plot_bgcolor: '#e5e5e5', // Light gray background
+                font: { color: '#333' },
                 margin: { t: 40, r: 20, l: 0, b: 40 }, // Left margin 0 to touch Bands
                 dragmode: 'pan',
             }}

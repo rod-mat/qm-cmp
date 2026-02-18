@@ -157,8 +157,7 @@ export default function TBLab() {
                     {/* Container for Side-by-Side Plot */}
                     <div className="flex flex-col lg:flex-row h-[600px] w-full gap-2">
                         {/* Left: Bands (75%) */}
-                        <div className="flex-[3] bg-black rounded border border-neutral-800 p-2 relative h-full">
-                            <h3 className="absolute top-2 left-4 text-neutral-400 text-xs z-10 font-bold">Electronic Band Structure</h3>
+                        <div className="flex-[3] bg-white rounded border border-neutral-300 p-2 relative h-full">
                             {data && (
                                 <BandPlot
                                     bands={data.bands}
@@ -170,8 +169,7 @@ export default function TBLab() {
                         </div>
 
                         {/* Right: DOS (25%) */}
-                        <div className="flex-1 bg-black rounded border border-neutral-800 p-2 relative h-full">
-                            <h3 className="absolute top-2 left-4 text-neutral-400 text-xs z-10 font-bold">DOS</h3>
+                        <div className="flex-1 bg-white rounded border border-neutral-300 p-2 relative h-full">
                             {data?.dos && (
                                 <DOSPlot
                                     E={data.dos.E}
