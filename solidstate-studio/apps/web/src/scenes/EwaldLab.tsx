@@ -21,8 +21,8 @@ export default function EwaldLab() {
     const b_val = 2.09;
 
     // Generate some G points for this basic crystal
-    const gPoints = [];
-    const gHKL = [];
+    const gPoints: [number, number, number][] = [];
+    const gHKL: [number, number, number][] = [];
     for (let h = -3; h <= 3; h++)
         for (let k = -3; k <= 3; k++)
             for (let l = -3; l <= 3; l++) {
@@ -38,8 +38,8 @@ export default function EwaldLab() {
     const req: EwaldRequest = {
         crystal: {
             B: [[b_val, 0, 0], [0, b_val, 0], [0, 0, b_val]],
-            gPoints: gPoints as any,
-            gHKL: gHKL as any
+            gPoints: gPoints,
+            gHKL: gHKL
         },
         beam: {
             lambda: lambda,
@@ -73,7 +73,7 @@ export default function EwaldLab() {
                 x * cos - z * sin,
                 p[1],
                 x * sin + z * cos
-            ];
+            ] as [number, number, number];
         });
 
         return {
