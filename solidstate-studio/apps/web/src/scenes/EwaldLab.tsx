@@ -31,33 +31,46 @@ export default function EwaldLab() {
                 gHKL.push([h, k, l]);
             }
 
-    const [lambda, setLambda] = useState(1.54);
-    const [distance, setDistance] = useState(30.0);
+    const [angle, setAngle] = useState(0);
 
-    const req: EwaldRequest = {
+    // Rotate G points based on angle (around Y axis)
+    const rotatedPointsProps = useMemo(() => {
+        const rad = angle * Math.PI / 180;
+        const cos = Math.cos(rad);
+        const sin = Math.sin(rad);
+
+        // Rotate gPoints
+        const rPoints = req.crystal.gPoints.map((p: any) => {
+            const x = p[0];
+            const z = p[2];
+            // Y rotation
+            // x' = x cos - z sin
+            // z' = x sin + z cos
+            return [
+                x * cos - z * sin,
+                p[1],
+                x * sin + z * cos
+            ];
+        });
+
+        return {
+            points: rPoints,
+            // We should technically rotate B matrix too but for simple visualization points are enough
+        };
+    }, [angle, req.crystal.gPoints]);
+
+    // Create a new request with rotated points
+    const activeReq = useMemo(() => ({
+        ...req,
         crystal: {
-            B: [[b_val, 0, 0], [0, b_val, 0], [0, 0, b_val]],
-            gPoints: gPoints as any,
-            gHKL: gHKL as any
-        },
-        beam: {
-            lambda: lambda,
-            kInDir: [0, 0, -1], // Incident along -Z
-            orientation: undefined // Identity
-        },
-        detector: {
-            distance: distance,
-            normal: [0, 0, 1], // Detector normal +Z (facing source)
-            up: [0, 1, 0],
-            width: 80,
-            height: 80
-        },
-        intensity: { model: 'unit' }
-    };
+            ...req.crystal,
+            gPoints: rotatedPointsProps.points
+        }
+    }), [req, rotatedPointsProps]);
 
     const { data } = useQuery({
-        queryKey: ['ewald', req],
-        queryFn: () => apiClient.calcEwald(req),
+        queryKey: ['ewald', activeReq],
+        queryFn: () => apiClient.calcEwald(activeReq),
         placeholderData: keepPreviousData
     });
 
@@ -68,6 +81,20 @@ export default function EwaldLab() {
             sidebar={
                 <>
                     <h1 className="text-xl font-bold text-white mb-4">Diffraction (Ewald)</h1>
+                    <div className="mb-4 bg-blue-900/30 p-3 rounded text-sm text-blue-200 border border-blue-800">
+                        <p><strong>Tip:</strong> Rotate the crystal to satisfy the Bragg condition and find diffraction spots.</p>
+                    </div>
+
+                    <ControlGroup title="Crystal Rotation">
+                        <Label>Angle Y ({angle.toFixed(0)}°)</Label>
+                        <input
+                            type="range" min="0" max="180" step="1"
+                            value={angle}
+                            onChange={e => setAngle(parseFloat(e.target.value))}
+                            className="w-full accent-blue-500"
+                        />
+                    </ControlGroup>
+
                     <ControlGroup title="Beam">
                         <Label>Wavelength λ (Å)</Label>
                         <Input type="number" step="0.1" value={lambda} onChange={e => setLambda(parseFloat(e.target.value))} />
@@ -91,23 +118,15 @@ export default function EwaldLab() {
                     <OrbitControls target={[0, 0, 0]} />
 
                     {/* Beam */}
-                    <BeamArrow kInDir={req.beam.kInDir} length={15} />
+                    <BeamArrow kInDir={activeReq.beam.kInDir} length={15} />
 
                     {/* Ewald Sphere centered at -k_in */}
-                    {/* k_in = k * dir. Sphere center is at -k_in? No.
-                        Scattering Triangle: k_out - k_in = Q.
-                        Ewald Sphere construction: Draw vector k_in (ending at origin). 
-                        Sphere center is at START of k_in. Radius k.
-                        If k_in points to origin (0,0,0). Start is -k_in.
-                        Sphere center at -k_in.
-                     */}
                     <group position={[0, 0, kRad]}>
                         <EwaldSphere radius={kRad} />
                     </group>
 
                     {/* Reciprocal Lattice (Points) */}
-                    {/* Only show points near Ewald sphere? Or all? */}
-                    <ReciprocalPointsLayer points={req.crystal.gPoints} />
+                    <ReciprocalPointsLayer points={activeReq.crystal.gPoints} />
 
                     {/* Detector */}
                     {/* Position: distance * normal? No, usually distance along axis.
