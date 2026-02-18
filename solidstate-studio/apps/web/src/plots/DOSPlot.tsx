@@ -19,7 +19,7 @@ export function DOSPlot({ E, dos, height = 400 }: DOSPlotProps) {
                 line: { color: 'orange', width: 2 }
             }]}
             layout={{
-                title: 'Density of States',
+                title: { text: 'Density of States' },
                 width: undefined,
                 height: height,
                 xaxis: {

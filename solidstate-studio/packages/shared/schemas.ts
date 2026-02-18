@@ -40,6 +40,8 @@ export const PlaneSchema = z.object({
   size: z.number().positive().optional()
 });
 
+export type PlaneParams = z.infer<typeof PlaneSchema>;
+
 export const CrystalBuildRequestSchema = z.object({
   lattice: LatticeParamsSchema,
   basis: z.array(BasisAtomSchema),

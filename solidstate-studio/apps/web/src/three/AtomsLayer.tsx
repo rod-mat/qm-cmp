@@ -1,8 +1,7 @@
-import { useMemo, useRef, useLayoutEffect } from 'react';
+import { useRef, useLayoutEffect } from 'react';
 import * as THREE from 'three';
 import { Vector3 } from '@shared/schemas';
 import { ELEMENT_COLORS } from '@shared/constants';
-// import { toVec3 } from './utils'; // assume relative import works
 
 interface AtomsLayerProps {
     positions: Vector3[];

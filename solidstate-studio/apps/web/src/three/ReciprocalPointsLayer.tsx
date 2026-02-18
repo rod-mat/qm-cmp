@@ -1,4 +1,4 @@
-import { useMemo, useRef, useLayoutEffect } from 'react';
+import { useRef, useLayoutEffect } from 'react';
 import * as THREE from 'three';
 import { Vector3 } from '@shared/schemas';
 
@@ -7,7 +7,7 @@ interface ReciprocalPointsLayerProps {
     selectedHKL?: [number, number, number];
 }
 
-export function ReciprocalPointsLayer({ points, selectedHKL }: ReciprocalPointsLayerProps) {
+export function ReciprocalPointsLayer({ points }: ReciprocalPointsLayerProps) {
     const meshRef = useRef<THREE.InstancedMesh>(null);
     const count = points.length;
 

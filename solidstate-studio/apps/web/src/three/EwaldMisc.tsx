@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import * as THREE from 'three';
 import { Vector3 } from '@shared/schemas';
-import { Line } from '@react-three/drei';
 
 interface EwaldSphereProps {
     radius: number; // k = 2pi / lambda

@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import * as THREE from 'three';
 import { Matrix3, Vector3 } from '@shared/schemas';
-import { Line } from '@react-three/drei';
 
 interface CellEdgesProps {
     A: Matrix3;

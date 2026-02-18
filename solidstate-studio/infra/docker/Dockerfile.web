@@ -10,9 +10,8 @@ WORKDIR /app
 COPY packages ./packages
 COPY apps/web ./apps/web
 
-WORKDIR /app/apps/web
-
 # Install shared dependencies at root so packages/shared determines them
+WORKDIR /app
 RUN npm init -y && npm install zod
 
 # Install App dependencies

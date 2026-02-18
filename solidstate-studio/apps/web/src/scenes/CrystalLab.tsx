@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import { useQuery } from '@tanstack/react-query';
@@ -9,7 +9,7 @@ import { CellEdges } from '@/three/CellEdges';
 import { ReciprocalPointsLayer } from '@/three/ReciprocalPointsLayer';
 import { HKLPlaneMesh } from '@/three/HKLPlaneMesh';
 import { DEFAULT_CAMERA_POSITION, DEFAULT_BG_COLOR } from '@shared/constants';
-import { CrystalBuildRequest, PlaneParams } from '@shared/schemas';
+import { CrystalBuildRequest } from '@shared/schemas';
 
 // Defaults
 const DEFAULT_REQ: CrystalBuildRequest = {
@@ -20,9 +20,6 @@ const DEFAULT_REQ: CrystalBuildRequest = {
     planes: []
 };
 
-// Simple presets import (would be dynamic in real app)
-import latticePresets from '@presets/lattices.json';
-
 export default function CrystalLab() {
     // State
     const [req, setReq] = useState<CrystalBuildRequest>(DEFAULT_REQ);
@@ -30,7 +27,7 @@ export default function CrystalLab() {
     const [showPlanes, setShowPlanes] = useState(true);
 
     // Query
-    const { data, isLoading, error } = useQuery({
+    const { data } = useQuery({
         queryKey: ['crystal', req],
         queryFn: () => apiClient.buildCrystal(req),
         staleTime: Infinity,
@@ -39,20 +36,20 @@ export default function CrystalLab() {
 
     // Handlers
     const updateLattice = (key: string, val: any) => {
-        setReq(prev => ({ ...prev, lattice: { ...prev.lattice, [key]: val } }));
+        setReq((prev: CrystalBuildRequest) => ({ ...prev, lattice: { ...prev.lattice, [key]: val } }));
     };
 
     const addPlane = (h: number, k: number, l: number) => {
-        setReq(prev => ({
+        setReq((prev: CrystalBuildRequest) => ({
             ...prev,
             planes: [...prev.planes, { h, k, l, size: 8, offset: 0 }]
         }));
     };
 
     const removePlane = (idx: number) => {
-        setReq(prev => ({
+        setReq((prev: CrystalBuildRequest) => ({
             ...prev,
-            planes: prev.planes.filter((_, i) => i !== idx)
+            planes: prev.planes.filter((_: any, i: number) => i !== idx)
         }));
     };
 

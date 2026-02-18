@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { apiClient } from '@/api/client';
-import { LabLayout, ControlGroup, Label, Input, Button } from '@/components/LabLayout';
+import { LabLayout, ControlGroup, Label, Input } from '@/components/LabLayout';
 import { BandPlot } from '@/plots/BandPlot';
 import { DOSPlot } from '@/plots/DOSPlot';
 import { TBRequest } from '@shared/schemas';

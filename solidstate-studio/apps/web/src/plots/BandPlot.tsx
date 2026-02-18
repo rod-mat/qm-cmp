@@ -27,7 +27,7 @@ export function BandPlot({ bands, kDist, labels, height = 400 }: BandPlotProps) 
         <Plot
             data={traces}
             layout={{
-                title: 'Electronic Band Structure',
+                title: { text: 'Electronic Band Structure' },
                 width: undefined, // responsive
                 height: height,
                 xaxis: {

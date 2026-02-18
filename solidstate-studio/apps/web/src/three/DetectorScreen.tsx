@@ -1,4 +1,4 @@
-import { useMemo, useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { SpotData } from '@shared/schemas';
 
