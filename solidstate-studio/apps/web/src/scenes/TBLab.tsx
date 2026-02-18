@@ -8,7 +8,7 @@ import { TBRequest } from '@shared/schemas';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
-import 'katex/dist/katex.min.css'; // Ensure CSS is loaded (might need global import in App.tsx if this fails)
+import 'katex/dist/katex.min.css';
 
 const THEORY_CONTENT: Record<string, string> = {
     '1d_chain': `
@@ -29,10 +29,10 @@ $$ E(k) = \\epsilon - 2t \\cos(ka) $$
 Atoms arranged in a simple square grid.
 
 **Dispersion:**
-$$ E(k_x, k_y) = \\epsilon - 2t (\\cos(k_x a) + \\cos(k_y a)) $$
+$$ E(k_x, k_y) = \\epsilon - 2t (\\cos(k_x a) + \\cos(k_y a)) - 4t' \\cos(k_x a)\\cos(k_y a) $$
 
 **Van Hove Singularities:**
-Logarithmic divergence in the Density of States (DOS) occurs at $E = \\epsilon$ (half-filling), visible as a sharp peak in the orange plot below.
+Logarithmic divergence in the Density of States (DOS). With $t' = 0$, it occurs at $E = \\epsilon$.
 `,
     '2d_honeycomb': `
 ### Graphene (Honeycomb Lattice)
@@ -80,7 +80,7 @@ export default function TBLab() {
                 eps: eps,
                 epsA: eps,
                 epsB: eps
-            } // Passing -t to backend
+            }
         },
         kpath: {
             points: kPoints as any,
@@ -140,7 +140,7 @@ export default function TBLab() {
                     </div>
 
                     {showTheory && (
-                        <div className="mt-4 p-4 bg-neutral-900 rounded border border-neutral-700 text-sm overflow-y-auto max-h-[50vh prose prose-invert">
+                        <div className="mt-4 p-4 bg-neutral-900 rounded border border-neutral-700 text-sm overflow-y-auto max-h-[50vh] prose prose-invert">
                             <ReactMarkdown
                                 remarkPlugins={[remarkMath]}
                                 rehypePlugins={[rehypeKatex]}
@@ -153,37 +153,35 @@ export default function TBLab() {
                 </>
             }
             main={
-                main = {
-                < div className="flex flex-col h-full bg-neutral-900 p-4 gap-4 overflow-y-auto">
-            {/* Container for Side-by-Side Plot */}
-            <div className="flex flex-row h-[600px] w-full gap-2">
-                {/* Left: Bands (75%) */}
-                <div className="flex-[3] bg-black rounded border border-neutral-800 p-2 relative">
-                    <h3 className="absolute top-2 left-4 text-neutral-400 text-xs z-10 font-bold">Electronic Band Structure</h3>
-                    {data && (
-                        <BandPlot
-                            bands={data.bands}
-                            kDist={data.k}
-                            labels={data.labels}
-                            height={undefined}
-                        />
-                    )}
-                </div>
+                <div className="flex flex-col h-full bg-neutral-900 p-4 gap-4 overflow-y-auto">
+                    {/* Container for Side-by-Side Plot */}
+                    <div className="flex flex-col lg:flex-row h-[600px] w-full gap-2">
+                        {/* Left: Bands (75%) */}
+                        <div className="flex-[3] bg-black rounded border border-neutral-800 p-2 relative h-full">
+                            <h3 className="absolute top-2 left-4 text-neutral-400 text-xs z-10 font-bold">Electronic Band Structure</h3>
+                            {data && (
+                                <BandPlot
+                                    bands={data.bands}
+                                    kDist={data.k}
+                                    labels={data.labels}
+                                    height={undefined}
+                                />
+                            )}
+                        </div>
 
-                {/* Right: DOS (25%) */}
-                <div className="flex-1 bg-black rounded border border-neutral-800 p-2 relative">
-                    <h3 className="absolute top-2 left-4 text-neutral-400 text-xs z-10 font-bold">DOS</h3>
-                    {data?.dos && (
-                        <DOSPlot
-                            E={data.dos.E}
-                            dos={data.dos.g}
-                            height={undefined}
-                        />
-                    )}
+                        {/* Right: DOS (25%) */}
+                        <div className="flex-1 bg-black rounded border border-neutral-800 p-2 relative h-full">
+                            <h3 className="absolute top-2 left-4 text-neutral-400 text-xs z-10 font-bold">DOS</h3>
+                            {data?.dos && (
+                                <DOSPlot
+                                    E={data.dos.E}
+                                    dos={data.dos.g}
+                                    height={undefined}
+                                />
+                            )}
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-            }
             }
         />
     );
