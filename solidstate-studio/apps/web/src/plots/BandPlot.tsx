@@ -43,7 +43,7 @@ export function BandPlot({ bands, kDist, labels, height = 400 }: BandPlotProps) 
                 paper_bgcolor: 'rgba(0,0,0,0)',
                 plot_bgcolor: 'rgba(0,0,0,0)',
                 font: { color: '#ccc' },
-                margin: { t: 40, r: 20, l: 50, b: 40 },
+                margin: { t: 40, r: 0, l: 60, b: 40 }, // Right margin 0 to touch DOS
                 dragmode: 'pan', // Default to pan
             }}
             style={{ width: '100%', height: '100%' }}
