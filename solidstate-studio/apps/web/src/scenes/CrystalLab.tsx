@@ -33,6 +33,12 @@ export default function CrystalLab() {
         staleTime: Infinity,
         retry: false
     });
+    // Note: CrystalLab handles its own layout, so we might want to inject error overlay or handled inside
+    // For now, let's just log or show a toast if possible, but simplest is conditional render.
+    // However, CrystalLab is the main view.
+
+    // Changing approach: Inject error display inside LabLayout or Main area.
+
 
     // Handlers
     const updateLattice = (key: string, val: any) => {

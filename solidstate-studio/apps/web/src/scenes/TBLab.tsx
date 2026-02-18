@@ -45,11 +45,14 @@ export default function TBLab() {
         }
     };
 
-    const { data } = useQuery({
+    const { data, isLoading, isError, error } = useQuery({
         queryKey: ['tb', req],
         queryFn: () => apiClient.calcTB(req),
         staleTime: Infinity
     });
+
+    if (isLoading) return <div className="text-white p-8">Loading simulation...</div>;
+    if (isError) return <div className="text-red-500 p-8">Error: {error?.message}</div>;
 
     return (
         <LabLayout
