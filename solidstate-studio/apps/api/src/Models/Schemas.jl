@@ -7,6 +7,12 @@ using StructTypes
 const Vector3 = SVector{3, Float64}
 const Matrix3 = SMatrix{3, 3, Float64, 9}
 
+export Vector3, Matrix3
+export LatticeParams, BasisAtom, ReciprocalParams, PlaneParams, CrystalBuildRequest
+export RealCell, RecipCell, AtomsData, MeshData, PlaneData, MetaData, CrystalBuildResponse
+export CrystalInput, BeamInput, DetectorInput, IntensityInput, EwaldRequest, SpotData, EwaldMeta, EwaldResponse
+export TBModelParams, KPoint, KPathParams, DOSParams, TBRequest, LabelData, DOSResult, TBMeta, TBResponse
+
 # --- Crystal Builder ---
 
 struct LatticeParams
