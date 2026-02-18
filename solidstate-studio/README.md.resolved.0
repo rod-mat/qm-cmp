@@ -1,0 +1,56 @@
+# SolidState Studio (MVP)
+
+A full-stack web application for Solid State Physics education/exploration.
+Includes Crystal Builder, Ewald Diffraction simulator, and Tight-Binding Band Structure calculator.
+
+## Stack
+- **Frontend**: React, TypeScript, Vite, Three.js (React Three Fiber), Plotly.
+- **Backend**: Julia (HTTP.jl), LinearAlgebra, StaticArrays.
+- **Infra**: Docker, Docker Compose.
+
+## Structure
+- `apps/web`: Frontend source.
+- `apps/api`: Backend Julia source.
+- `packages/shared`: Shared schemas/constants.
+- `packages/presets`: Data presets.
+- `infra/docker`: Docker configuration.
+
+## How to Run (Docker) - Recommended
+
+1. Ensure Docker Desktop is running.
+2. From the root directory:
+   ```powershell
+   docker-compose -f infra/docker/docker-compose.yml up --build
+   ```
+3. Open http://localhost:5173 in browser.
+
+## How to Run (Manual/Local)
+
+Requires **Julia >= 1.10** and **Node.js >= 20**.
+
+### 1. Backend
+```powershell
+cd apps/api
+julia --project=. -e 'using Pkg; Pkg.instantiate();'
+julia --project=. src/run.jl
+```
+Server will start on `0.0.0.0:8080`.
+
+### 2. Frontend
+Open a new terminal.
+```powershell
+cd apps/web
+npm install
+npm run dev
+```
+Access at `http://localhost:5173`.
+
+## Labs
+- **/crystal**: Visualize crystal structures (SC, BCC, FCC, Hex), Planes, and Reciprocal Lattice.
+- **/ewald**: Interactive diffraction geometric condition (Ewald sphere).
+- **/tb**: Tight-binding band structure and DOS for 1D/2D systems (Graphene, etc.).
+
+## Troubleshooting
+- If "Module not found" for `@shared`, ensure `npm install` was run in `apps/web`.
+- If Julia fails to precompile, ensure you are on Julia 1.10+.
+- If Ewald shows no spots, try adjusting Wavelength or checking "Show Reciprocal Points" in Crystal lab to verify orientation.

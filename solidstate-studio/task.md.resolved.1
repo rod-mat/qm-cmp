@@ -1,0 +1,30 @@
+# Task Checklist: SolidState Studio MVP
+
+- [ ] Project Structure & Configuration
+    - [x] Initialize monorepo structure (apps/web, apps/api, packages/shared, etc.)
+    - [/] Create shared schemas (Zod) and constants
+    - [/] Create presets (lattices, materials, examples)
+- [ ] Backend (Julia) Implementation
+    - [ ] Set up `Project.toml` dependencies
+    - [ ] Implement `Server.jl` & `Routes.jl` (HTTP + JSON)
+    - [ ] Implement `Cache.jl` (LRU + Hashing)
+    - [ ] Implement Physics Modules:
+        - [ ] Crystal (Builder, Reciprocal, Planes)
+        - [ ] Diffraction (Ewald sphere spots)
+        - [ ] TightBinding (Bands + DOS)
+    - [ ] Implement Utils (Validation, CanonicalJSON)
+    - [ ] Add basic tests
+- [ ] Frontend (React/TS/Three/Vite) Implementation
+    - [ ] Initialize Vite + React + TS project
+    - [ ] Install dependencies (R3F, TanStack Query, Zod, Plotly)
+    - [ ] Implement API Client & Zod Validation
+    - [ ] Implement Shared UI Components (shadcn or custom simple)
+    - [ ] Implement 3D Components (Atoms, CellEdges, ReciprocalPoints, HKLPlane, EwaldSphere, Detector)
+    - [ ] Implement Scenes/Pages:
+        - [ ] Crystal Lab (/crystal)
+        - [ ] Ewald Lab (/ewald)
+        - [ ] Tight-Binding Lab (/tb)
+- [ ] Infrastructure & Documentation
+    - [ ] Dockerfiles (Web + API)
+    - [ ] docker-compose.yml
+    - [ ] Documentation (API Contract, OpenAPI, README)

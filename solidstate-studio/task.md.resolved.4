@@ -1,0 +1,30 @@
+# Task Checklist: SolidState Studio MVP
+
+- [ ] Project Structure & Configuration
+    - [x] Initialize monorepo structure (apps/web, apps/api, packages/shared, etc.)
+    - [x] Create shared schemas (Zod) and constants
+    - [x] Create presets (lattices, materials, examples)
+- [x] Backend (Julia) Implementation
+    - [x] Set up [Project.toml](file:///C:/Users/renci/.gemini/antigravity/brain/da419169-a8cb-438c-9ca4-7ecc7291563d/apps/api/Project.toml) dependencies
+    - [x] Implement [Server.jl](file:///C:/Users/renci/.gemini/antigravity/brain/da419169-a8cb-438c-9ca4-7ecc7291563d/apps/api/src/Server.jl) & [Routes.jl](file:///C:/Users/renci/.gemini/antigravity/brain/da419169-a8cb-438c-9ca4-7ecc7291563d/apps/api/src/Routes.jl) (HTTP + JSON)
+    - [x] Implement [Cache.jl](file:///C:/Users/renci/.gemini/antigravity/brain/da419169-a8cb-438c-9ca4-7ecc7291563d/apps/api/src/Cache.jl) (LRU + Hashing)
+    - [x] Implement Physics Modules:
+        - [x] Crystal (Builder, Reciprocal, Planes)
+        - [x] Diffraction (Ewald sphere spots)
+        - [x] TightBinding (Bands + DOS)
+    - [x] Implement Utils (Validation, CanonicalJSON)
+    - [x] Add basic tests
+- [x] Frontend (React/TS/Three/Vite) Implementation
+    - [x] Initialize Vite + React + TS project
+    - [x] Install dependencies (R3F, TanStack Query, Zod, Plotly)
+    - [x] Implement API Client & Zod Validation
+    - [x] Implement Shared UI Components (shadcn or custom simple)
+    - [x] Implement 3D Components (Atoms, CellEdges, ReciprocalPoints, HKLPlane, EwaldSphere, Detector)
+    - [x] Implement Scenes/Pages:
+        - [x] Crystal Lab (/crystal)
+        - [x] Ewald Lab (/ewald)
+        - [x] Tight-Binding Lab (/tb)
+- [ ] Infrastructure & Documentation
+    - [/] Dockerfiles (Web + API)
+    - [/] docker-compose.yml
+    - [ ] Documentation (API Contract, OpenAPI, README)

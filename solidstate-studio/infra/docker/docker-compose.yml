@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ../../
+      dockerfile: infra/docker/Dockerfile.api
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ../../
+      dockerfile: infra/docker/Dockerfile.web
+    ports:
+      - "5173:5173"
+    environment:
+      # Browser will access API at localhost:8080/api. 
+      # Vite proxy at 5173/api redirects to localhost:8080 internally?
+      # NO. In build/preview mode, Vite Proxy might not be active or works differently.
+      # Actually, vite preview supports proxy in vite.config.ts if configured.
+      # In this setup, we have "VITE_API_BASE" env var.
+      # If we set VITE_API_BASE to /api, front end calls host/api.
+      # We need a proxy (nginx) or rely on Vite's proxy.
+      # Vite's proxy works in dev and preview.
+      # In vite.config.ts we set proxy /api -> http://localhost:8080.
+      # IN DOCKER: "localhost" in web container refers to itself.
+      # It should point to "api" service.
+      # So proxy target should be "http://api:8080".
+      # BUT, configuration is baked in vite.config.ts file at build time? 
+      # Vite config is read at runtime for preview? Yes.
+      # BUT, usually Vite Proxy is for dev server. Preview server also uses it?
+      # Yes, it does.
+      # So we strictly need to ensure vite.config.ts uses an ENV var for proxy target or similar.
+      # Or simple hack: browser accesses API directly at http://localhost:8080/api.
+      # If we set VITE_API_BASE="http://localhost:8080/api", browser does CORS request.
+      # And our server handles CORS.
+      # This is simpler and more robust than proxying through node.
+      - VITE_API_BASE=http://localhost:8080/api
+    depends_on:
+      - api

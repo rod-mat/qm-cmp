@@ -1,0 +1,43 @@
+# Implementation Plan: SolidState Studio MVP
+
+## Goal Description
+Create a full-stack monorepo for SolidState Studio, a web-based physics lab MVP.
+- **Frontend**: React, TypeScript, Three.js (R3F), TanStack Query, shadcn/ui.
+- **Backend**: Julia (HTTP.jl, JSON3.jl), scientific computing packages.
+- **Infrastructure**: Docker, docker-compose.
+- **Features**: Crystal Builder, Ewald Sphere / Diffractometer, Tight-Binding Bands.
+
+## User Review Required
+None immediately (project initialization).
+
+## Proposed Changes
+
+### Structure
+- `apps/web`: Frontend application.
+- `apps/api`: Backend application.
+- `packages/shared`: Shared types and constants.
+- `packages/presets`: JSON data for lattices/materials.
+- `infra`: Docker configuration.
+- `docs`: API contracts and documentation.
+
+### Backend (Julia)
+- `Server.jl`: HTTP server setup.
+- `Routes.jl`: Route handling.
+- `Cache.jl`: In-memory LRU caching.
+- `Physics/`: Domain logic for crystals, diffraction, and band structure.
+
+### Frontend (React)
+- `App.tsx`: Main entry point and routing.
+- `api/`: API client with Zod validation.
+- `three/`: Reusable 3D components.
+- `scenes/`: Page layouts for labs.
+
+## Verification Plan
+### Automated Tests
+- Julia unit tests for physics calculations.
+- Smoke tests for API endpoints.
+
+### Manual Verification
+- Verify Docker containers start correctly.
+- Test endpoint responses with `curl` or Postman.
+- Verify 3D rendering and interactivity in browser.

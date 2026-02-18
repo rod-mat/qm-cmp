@@ -1,0 +1,6 @@
+{
+  "sc":   { "kind": "sc",  "a": 3.0 },
+  "bcc":  { "kind": "bcc", "a": 3.0 },
+  "fcc":  { "kind": "fcc", "a": 3.0 },
+  "hex":  { "kind": "hex", "a": 3.0, "c": 4.8 }
+}

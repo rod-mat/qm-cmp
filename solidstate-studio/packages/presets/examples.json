@@ -1,0 +1,80 @@
+{
+    "crystal": {
+        "sc_simple": {
+            "lattice": {
+                "kind": "sc",
+                "a": 4.0
+            },
+            "basis": [
+                {
+                    "element": "Po",
+                    "frac": [
+                        0,
+                        0,
+                        0
+                    ]
+                }
+            ]
+        },
+        "fe_bcc": {
+            "lattice": {
+                "kind": "bcc",
+                "a": 2.87
+            },
+            "basis": [
+                {
+                    "element": "Fe",
+                    "frac": [
+                        0,
+                        0,
+                        0
+                    ]
+                }
+            ]
+        }
+    },
+    "ewald": {
+        "standard": {
+            "lambda": 1.54,
+            "kInDir": [
+                0,
+                0,
+                -1
+            ],
+            "distance": 50,
+            "width": 100,
+            "height": 100
+        }
+    },
+    "tb": {
+        "chain_t1": {
+            "model": {
+                "lattice": "1d_chain",
+                "params": {
+                    "t": -1.0,
+                    "eps": 0.0
+                }
+            }
+        },
+        "square_t1": {
+            "model": {
+                "lattice": "2d_square",
+                "params": {
+                    "t": -1.0,
+                    "tp": 0.0,
+                    "eps": 0.0
+                }
+            }
+        },
+        " graphene": {
+            "model": {
+                "lattice": "2d_honeycomb",
+                "params": {
+                    "t": -2.7,
+                    "epsA": 0.0,
+                    "epsB": 0.0
+                }
+            }
+        }
+    }
+}
