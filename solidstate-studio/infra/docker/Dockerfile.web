@@ -18,6 +18,10 @@ RUN npm init -y && npm install zod
 WORKDIR /app/apps/web
 RUN npm install
 
+# ARG for VITE environment variables (must be present at build time)
+ARG VITE_API_BASE
+ENV VITE_API_BASE=$VITE_API_BASE
+
 # Build
 RUN npm run build
 
