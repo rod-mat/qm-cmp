@@ -35,10 +35,15 @@ export function DOSPlot({ E, dos, height = 400 }: DOSPlotProps) {
                 paper_bgcolor: 'rgba(0,0,0,0)',
                 plot_bgcolor: 'rgba(0,0,0,0)',
                 font: { color: '#ccc' },
-                margin: { t: 40, r: 20, l: 10, b: 40 }
+                margin: { t: 40, r: 20, l: 10, b: 40 },
+                dragmode: 'pan',
             }}
             style={{ width: '100%', height: '100%' }}
-            config={{ responsive: true, displayModeBar: false }}
+            config={{
+                responsive: true,
+                displayModeBar: true,
+                scrollZoom: true
+            }}
         />
     );
 }

@@ -135,7 +135,7 @@ export default function TBLab() {
                 </>
             }
             main={
-                <div className="flex flex-col h-full bg-neutral-900 p-4 gap-4">
+                <div className="flex flex-col h-full bg-neutral-900 p-4 gap-4 overflow-y-auto">
                     {/* Top: Bands */}
                     <div className="flex-1 bg-black rounded border border-neutral-800 p-2 relative">
                         <h3 className="absolute top-2 left-4 text-neutral-400 text-xs z-10 font-bold">Electronic Band Structure</h3>

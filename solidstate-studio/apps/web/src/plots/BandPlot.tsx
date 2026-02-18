@@ -43,10 +43,16 @@ export function BandPlot({ bands, kDist, labels, height = 400 }: BandPlotProps) 
                 paper_bgcolor: 'rgba(0,0,0,0)',
                 plot_bgcolor: 'rgba(0,0,0,0)',
                 font: { color: '#ccc' },
-                margin: { t: 40, r: 20, l: 50, b: 40 }
+                margin: { t: 40, r: 20, l: 50, b: 40 },
+                dragmode: 'pan', // Default to pan
             }}
             style={{ width: '100%', height: '100%' }}
-            config={{ responsive: true, displayModeBar: false }}
+            config={{
+                responsive: true,
+                displayModeBar: true,
+                scrollZoom: true,
+                modeBarButtonsToAdd: ['zoom2d', 'pan2d', 'zoomIn2d', 'zoomOut2d', 'autoScale2d', 'resetScale2d']
+            }}
         />
     );
 }
