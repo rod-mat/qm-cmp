@@ -154,16 +154,16 @@ function update_meta_hash(obj, h::String)
     return T(vals...)
 end
 
-function update_meta_struct(m::Models.Schemas.MetaData, h)
-    return Models.Schemas.MetaData(h, m.warnings)
+function update_meta_struct(m::Schemas.MetaData, h)
+    return Schemas.MetaData(h, m.warnings)
 end
 
-function update_meta_struct(m::Models.Schemas.EwaldMeta, h)
-    return Models.Schemas.EwaldMeta(h, m.nTested)
+function update_meta_struct(m::Schemas.EwaldMeta, h)
+    return Schemas.EwaldMeta(h, m.nTested)
 end
 
-function update_meta_struct(m::Models.Schemas.TBMeta, h)
-    return Models.Schemas.TBMeta(h)
+function update_meta_struct(m::Schemas.TBMeta, h)
+    return Schemas.TBMeta(h)
 end
 
 end
