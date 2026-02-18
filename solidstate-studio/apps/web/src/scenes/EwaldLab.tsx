@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
@@ -31,7 +31,30 @@ export default function EwaldLab() {
                 gHKL.push([h, k, l]);
             }
 
+    const [lambda, setLambda] = useState(1.54);
+    const [distance, setDistance] = useState(30.0);
     const [angle, setAngle] = useState(0);
+
+    const req: EwaldRequest = {
+        crystal: {
+            B: [[b_val, 0, 0], [0, b_val, 0], [0, 0, b_val]],
+            gPoints: gPoints as any,
+            gHKL: gHKL as any
+        },
+        beam: {
+            lambda: lambda,
+            kInDir: [0, 0, -1], // Incident along -Z
+            orientation: undefined // Identity
+        },
+        detector: {
+            distance: distance,
+            normal: [0, 0, 1], // Detector normal +Z (facing source)
+            up: [0, 1, 0],
+            width: 80,
+            height: 80
+        },
+        intensity: { model: 'unit' }
+    };
 
     // Rotate G points based on angle (around Y axis)
     const rotatedPointsProps = useMemo(() => {
@@ -129,16 +152,7 @@ export default function EwaldLab() {
                     <ReciprocalPointsLayer points={activeReq.crystal.gPoints} />
 
                     {/* Detector */}
-                    {/* Position: distance * normal? No, usually distance along axis.
-                        If normal is (0,0,1) and distance 30. Pos (0,0,30).
-                    */}
                     <group position={[0, 0, -distance]}>
-                        {/* Wait, if beam is -Z. Detector should be at -distance? 
-                             Transmission -> Behind sample. Sample at 0. Beam towards -Z. Detector at -Z.
-                             Reflection -> +Z.
-                             Our tests used +Z?
-                             Let's visualize and see.
-                         */}
                         <DetectorScreen width={80} height={80} spots={data?.spots || []} />
                     </group>
 
